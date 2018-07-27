@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Personal CSS -->
+    <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  </head>
+  <body>
+      
+
+    <div class="container">
+        <!-- Header -->
+        <div class="jumbotron">
+            <h2>Train Scheduler</h2>
+        </div>
+
+        <!-- Train Scheduler - Saved Trains go here -->
+        <div class="row">
+            <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <b>Current Train Schedule</b>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr class="text-center">
+                                <th scope="col">Train Name</th>
+                                <th scope="col">Destination</th>
+                                <th scope="col">Frequency (min)</th>
+                                <th scope="col">Next Arrival</th>
+                                <th scope="col">Minutes Away</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            <tr>
+                                <td>Example Train</td>
+                                <td>Kokomo</td>
+                                <td>20</td>
+                                <td>5:00p</td>
+                                <td>20</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Add Train section -->
+
+        <div class="row mt-3">
+            <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <b>Add Train</b>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label>Train Name:</label>
+                            <input type="train-name" class="form-control" id="trainName" placeholder="Enter Train Name">
+                            <br>
+                            <label>Destination:</label>
+                            <input type="destination" class="form-control" id="trainDestination" placeholder="Enter Destination">
+                            <br>
+                            <label> First Train Time (HH:mm - military time):</label>
+                            <input type="train-time" class="form-control" id="firstTrainTime" placeholder="Enter train time">
+                            <br>
+                            <label>Frequency (min):</label>
+                            <input type="frequency" class="form-control" id="trainFrequency" placeholder="Enter train frequency">
+                        </div>
+                            <button class="btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+      
+    <!-- Optional JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+    <!-- Personal JS -->
+    <script src="assets/javascript/script.js"></script>
+    <!-- Moment JS -->
+    <script src="assets/javascript/moment.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    
+  </body>
+</html>
