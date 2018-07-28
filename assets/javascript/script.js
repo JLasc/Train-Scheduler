@@ -1,5 +1,4 @@
 $(document).ready(function () {
-  
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyB7nHRA8mThsS7JoZOJ_mKIcKTeMaDo7Ls",
@@ -9,7 +8,7 @@ $(document).ready(function () {
     storageBucket: "train-scheduler-8c05a.appspot.com",
     messagingSenderId: "962906673522"
   };
-
+  
   firebase.initializeApp(config);
   var database = firebase.database();
 
@@ -43,24 +42,48 @@ $(document).ready(function () {
       trainObject: trainObj,
       nextTrain: nextTrain,
       minUntilTrain: minUntilTrain,
-      timeStamp: firebase.database.ServerValue.TIMESTAMP
+      timeStamp: firebase.database.ServerValue.TIMESTAMP,
     });
 
   });
 
+
   //Data Persistence
   database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
+    
+    
+    snapObj = {
+      name: childSnapshot.val().trainObject.trainName,
+      dest: childSnapshot.val().trainObject.trainDest,
+      freq: childSnapshot.val().trainObject.freq,
+      nxtTrn: childSnapshot.val().nextTrain,
+      minTrn: childSnapshot.val().minUntilTrain,
+      test: childSnapshot.key
+    }
+    
+    a = childSnapshot.key
 
     $(".tableInput").append(`
     <tr>
-    <td>${childSnapshot.val().trainObject.trainName}</td>
-    <td>${childSnapshot.val().trainObject.trainDest}</td>
-    <td>${childSnapshot.val().trainObject.freq}</td>
-    <td>${childSnapshot.val().nextTrain}</td> //Next Arrival - calculates from the current time, when next train will arrive
-    <td>${childSnapshot.val().minUntilTrain}</td> // Minutes away -  from the current time, when will the next train arrive.
+    <td>${snapObj.name}</td>
+    <td>${snapObj.dest}</td>
+    <td>${snapObj.freq}</td>
+    <td>${snapObj.nxtTrn}</td> //Next Arrival - calculates from the current time, when next train will arrive
+    <td>${snapObj.minTrn}</td> // Minutes away -  from the current time, when will the next train arrive.
+    <td><i id="delete-btn" class="fas fa-times-circle"></i></td>
+    <td><i id="edit-btn" class="fas fa-user-edit"></i></td>
     </tr>`);
 
   });
+
+  $(document).on("click", "#delete-btn", function(){
+    $( "tr" ).click(function() {
+      $( this ).remove();
+    });
+    
+  })
+
+
 
 }); /* End of Doc Rdy */
