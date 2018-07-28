@@ -13,5 +13,27 @@ $(document).ready(function() {
 
   var databse = firebase.database();
 
+
+  $(".submit-btn").on("click", function() {
+    event.preventDefault();
+
+    
+  trainObj = {
+    trainName: $("#trainName").val().trim(),
+    trainDest: $("#trainDestination").val().trim(),
+    firstTrain: $("#firstTrainTime").val().trim(),
+    freq: $("#trainFrequency").val().trim()
+  };
+
+
+    $(".tableInput").append(`
+      <tr>
+      <td>${trainObj.trainName}</td>
+      </tr>`
+  )
+
+    
+  });
+
   
 });
