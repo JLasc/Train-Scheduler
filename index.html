@@ -37,7 +37,7 @@
                                 <th scope="col">Minutes Away</th>
                             </tr>
                         </thead>
-                        <tbody class="text-center">
+                        <tbody class="text-center tableInput">
                             <tr>
                                 <td>Example Train</td>
                                 <td>Kokomo</td>
@@ -54,7 +54,7 @@
 
         <!-- Add Train section -->
 
-        <div class="row mt-3">
+        <div class="row my-3">
             <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
@@ -64,32 +64,30 @@
                     <form>
                         <div class="form-group">
                             <label>Train Name:</label>
-                            <input type="train-name" class="form-control" id="trainName" placeholder="Enter Train Name">
+                            <input type="train-name" class="form-control trainInput" id="trainName" placeholder="Enter Train Name">
                             <br>
                             <label>Destination:</label>
-                            <input type="destination" class="form-control" id="trainDestination" placeholder="Enter Destination">
+                            <input type="destination" class="form-control trainInput" id="trainDestination" placeholder="Enter Destination">
                             <br>
                             <label> First Train Time (HH:mm - military time):</label>
-                            <input type="train-time" class="form-control" id="firstTrainTime" placeholder="Enter train time">
+                            <input type="time" class="form-control trainInput" id="firstTrainTime" placeholder="Enter train time">
                             <br>
                             <label>Frequency (min):</label>
-                            <input type="frequency" class="form-control" id="trainFrequency" placeholder="Enter train frequency">
+                            <input type="amount" class="form-control trainInput" id="trainFrequency" placeholder="Enter train frequency">
                         </div>
-                            <button class="btn btn-primary">Submit</button>
+                            <button class="btn btn-primary submit-btn" type="submit">Submit</button>
                     </form>
-
                 </div>
             </div>
             </div>
-
         </div>
-
-
 
     </div>
 
-
-
+        <!-- Footer -->
+        <div class="footer-copyright text-center pt-3 bg-primary">
+            © 2018 Copyright: Jonathan Lascaze
+        </div>
 
 
 
