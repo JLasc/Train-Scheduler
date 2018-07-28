@@ -1,28 +1,24 @@
+
 $(document).ready(function() {
+  // Initialize Firebase
+var config = {
+  apiKey: "AIzaSyB7nHRA8mThsS7JoZOJ_mKIcKTeMaDo7Ls",
+  authDomain: "train-scheduler-8c05a.firebaseapp.com",
+  databaseURL: "https://train-scheduler-8c05a.firebaseio.com",
+  projectId: "train-scheduler-8c05a",
+  storageBucket: "train-scheduler-8c05a.appspot.com",
+  messagingSenderId: "962906673522"
+};
 
-// Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyB7nHRA8mThsS7JoZOJ_mKIcKTeMaDo7Ls",
-    authDomain: "train-scheduler-8c05a.firebaseapp.com",
-    databaseURL: "https://train-scheduler-8c05a.firebaseio.com",
-    projectId: "train-scheduler-8c05a",
-    storageBucket: "train-scheduler-8c05a.appspot.com",
-    messagingSenderId: "962906673522"
-  };
-  firebase.initializeApp(config);
+firebase.initializeApp(config);
+var database = firebase.database();
 
-  var databse = firebase.database();
-
-  var currentTime = `${moment().format("kk:mm A")}`
-  console.log(currentTime)
-  
-  var subtractTime = `${moment().subtract(20, "minutes").format("kk:mm A")}`
-  console.log(subtractTime)
-
-
+//Submitt Button Event
   $(".submit-btn").on("click", function() {
-    event.preventDefault();
-    
+    event.preventDefault()
+
+
+//Holds the values of the forms.
   trainObj = {
     trainName: $("#trainName").val().trim(),
     trainDest: $("#trainDestination").val().trim(),
@@ -30,34 +26,44 @@ $(document).ready(function() {
     freq: $("#trainFrequency").val().trim()
   };
 
+
   //Grabs the input value entered, and stores it inside moment()
   firstTrainTime = moment(trainObj.firstTrain, "hh:mm A");
-
   //Finds the difference in current time and firstTrain in minutes
-  timeDiff = moment().diff(moment(firstTrainTime), "minutes")
-  
+  timeDiff = moment().diff(moment(firstTrainTime), "minutes");
   //Modulus frequency to give remainder time in minutes
   timeTillNext = timeDiff % trainObj.freq;
-  
-  //Subtracts remainder from frequency to give minutes until next train arrival
+  //Subtracts frequency from remainder to give minutes until next train arrival
   minUntilTrain = trainObj.freq - timeTillNext;
-
   //Add mins until next train to current time, and format to display hh:mm 
-  nextTrain = moment().add(minUntilTrain, "minutes").format("HH:mm")
+  nextTrain = moment().add(minUntilTrain, "minutes").format("h:mm A");
 
-    $(".tableInput").append(`
-      <tr>
-      <td>${trainObj.trainName}</td>
-      <td>${trainObj.trainDest}</td>
-      <td>${trainObj.freq}</td>
-      <td>${nextTrain}</td> //Next Arrival - calculates from the current time, when next train will arrive
-      <td>${minUntilTrain}</td> // Minutes away -  from the current time, when will the next train arrive.
-      </tr>`
-  )
-    
+  //Push to Firebase
+  database.ref().push({
+    trainObject: trainObj,
+    nextTrain: nextTrain,
+    minUntilTrain: minUntilTrain
+
+  });
+  
   }); 
 
-  
+  //Data Persistence
+  database.ref().on("child_added", function(childSnapshot){
+    console.log(childSnapshot.val());
+
+    $(".tableInput").append(`
+    <tr>
+    <td>${childSnapshot.val().trainObject.trainName}</td>
+    <td>${childSnapshot.val().trainObject.trainDest}</td>
+    <td>${childSnapshot.val().trainObject.freq}</td>
+    <td>${childSnapshot.val().nextTrain}</td> //Next Arrival - calculates from the current time, when next train will arrive
+    <td>${childSnapshot.val().minUntilTrain}</td> // Minutes away -  from the current time, when will the next train arrive.
+    </tr>`
+  );
+    
+  });
+
 
 
 
