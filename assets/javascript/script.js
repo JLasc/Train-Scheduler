@@ -8,7 +8,7 @@ $(document).ready(function () {
     storageBucket: "train-scheduler-8c05a.appspot.com",
     messagingSenderId: "962906673522"
   };
-  
+
   firebase.initializeApp(config);
   var database = firebase.database();
   var lastPushKey = database.ref().push().key
@@ -55,7 +55,7 @@ $(document).ready(function () {
   //Data Persistence
   database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
-    
+
     snapObj = {
       name: childSnapshot.val().trainObject.trainName,
       dest: childSnapshot.val().trainObject.trainDest,
@@ -64,7 +64,7 @@ $(document).ready(function () {
       minTrn: childSnapshot.val().minUntilTrain,
       test: childSnapshot.key
     }
-    
+
     a = childSnapshot.key
 
     $(".tableInput").append(`
@@ -78,14 +78,14 @@ $(document).ready(function () {
 
   });
 
-  $("#delete-btn").on("click", function(){
+  $("#delete-btn").on("click", function () {
     $(".tableInput").empty();
-      database.ref().set({
-        trainObject: null,
-        nextTrain: null,
-        minUntilTrain: null
+    database.ref().set({
+      trainObject: null,
+      nextTrain: null,
+      minUntilTrain: null
     });
-    
+
   })
 
 

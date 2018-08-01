@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Train Scheduler</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -9,12 +10,15 @@
     <!-- Personal CSS -->
     <link href="./assets/css/style.css" type="text/css" rel="stylesheet">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
+        crossorigin="anonymous">
 </head>
-  <body>
-      
+
+<body>
+
     <!-- MP4 Background Cover -->
     <video autoplay muted loop id="myVideo">
         <source src="./assets/images/station.mp4" type="video/mp4">
@@ -27,28 +31,29 @@
         <!-- Train Scheduler - Saved Trains go here -->
         <div class="row train-schedule mt-4">
             <div class="col-sm-12">
-            <div class="card train-schedule">
-                <div class="card-header train-head">
-                    <b>Current Train Schedule</b>
+                <div class="card train-schedule">
+                    <div class="card-header train-head">
+                        <b>Current Train Schedule</b>
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead class="thead bg-color">
+                                <tr class="text-center">
+                                    <th scope="col">Train Name</th>
+                                    <th scope="col">Destination</th>
+                                    <th scope="col">Frequency (min)</th>
+                                    <th scope="col">Next Arrival</th>
+                                    <th scope="col">Minutes Away</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center tableInput">
+                            </tbody>
+                        </table>
+                        <hr>
+                        <button id="delete-btn" class="btn">
+                            <i class="fas fa-trash-alt"></i> Clear</button>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <table class="table">
-                        <thead class="thead bg-color">
-                            <tr class="text-center">
-                                <th scope="col">Train Name</th>
-                                <th scope="col">Destination</th>
-                                <th scope="col">Frequency (min)</th>
-                                <th scope="col">Next Arrival</th>
-                                <th scope="col">Minutes Away</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-center tableInput">
-                        </tbody>
-                    </table>
-                    <hr>
-                    <button id="delete-btn" class="btn"><i class="fas fa-trash-alt"></i> Clear</button>
-                </div>
-            </div>
             </div>
         </div>
 
@@ -56,45 +61,45 @@
 
         <div class="row my-3">
             <div class="col-sm-12">
-            <div class="card add-train">
-                <div class="card-header train-head">
-                    <b>Add Train</b>
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Train Name:</label>
-                            <input type="train-name" class="form-control trainInput" id="trainName" placeholder="Enter Train Name">
-                            <br>
-                            <label>Destination:</label>
-                            <input type="destination" class="form-control trainInput" id="trainDestination" placeholder="Enter Destination">
-                            <br>
-                            <label> First Train Time:</label>
-                            <input type="time" class="form-control trainInput" id="firstTrainTime">
-                            <br>
-                            <label>Frequency (min):</label>
-                            <input type="number" class="form-control trainInput" id="trainFrequency" placeholder="Enter frequency">
-                        </div>
+                <div class="card add-train">
+                    <div class="card-header train-head">
+                        <b>Add Train</b>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label>Train Name:</label>
+                                <input type="train-name" class="form-control trainInput" id="trainName" placeholder="Enter Train Name">
+                                <br>
+                                <label>Destination:</label>
+                                <input type="destination" class="form-control trainInput" id="trainDestination" placeholder="Enter Destination">
+                                <br>
+                                <label> First Train Time:</label>
+                                <input type="time" class="form-control trainInput" id="firstTrainTime">
+                                <br>
+                                <label>Frequency (min):</label>
+                                <input type="number" class="form-control trainInput" id="trainFrequency" placeholder="Enter frequency">
+                            </div>
                             <button class="btn submit-btn" type="submit">Submit</button>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
 
-         <!-- Footer -->
-         <div class="footer-copyright text-center py-3">
+        <!-- Footer -->
+        <div class="footer-copyright text-center py-3">
             © 2018 Copyright: Jon Lascaze
         </div>
 
     </div>
 
-       
 
 
 
 
-      
+
+
     <!-- Optional JavaScript -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
@@ -105,8 +110,11 @@
     <!-- Moment JS -->
     <script src="assets/javascript/moment.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    
-  </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+
+</body>
+
 </html>
