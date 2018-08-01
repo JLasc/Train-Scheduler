@@ -11,6 +11,8 @@ $(document).ready(function () {
   
   firebase.initializeApp(config);
   var database = firebase.database();
+  var lastPushKey = database.ref().push().key
+
 
   //Submitt Button Event
   $(".submit-btn").on("click", function () {
@@ -45,13 +47,14 @@ $(document).ready(function () {
       timeStamp: firebase.database.ServerValue.TIMESTAMP,
     });
 
+    console.log(lastPushKey)
+
   });
 
 
   //Data Persistence
   database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
-    
     
     snapObj = {
       name: childSnapshot.val().trainObject.trainName,
@@ -66,20 +69,21 @@ $(document).ready(function () {
 
     $(".tableInput").append(`
     <tr>
-    <td>${snapObj.name}</td>
+    <td><b>${snapObj.name}</b></td>
     <td>${snapObj.dest}</td>
     <td>${snapObj.freq}</td>
     <td>${snapObj.nxtTrn}</td> //Next Arrival - calculates from the current time, when next train will arrive
     <td>${snapObj.minTrn}</td> // Minutes away -  from the current time, when will the next train arrive.
-    <td><i id="delete-btn" class="fas fa-times-circle"></i></td>
-    <td><i id="edit-btn" class="fas fa-user-edit"></i></td>
     </tr>`);
 
   });
 
-  $(document).on("click", "#delete-btn", function(){
-    $( "tr" ).click(function() {
-      $( this ).remove();
+  $("#delete-btn").on("click", function(){
+    $(".tableInput").empty();
+      database.ref().set({
+        trainObject: null,
+        nextTrain: null,
+        minUntilTrain: null
     });
     
   })
