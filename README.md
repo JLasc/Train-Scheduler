@@ -1,6 +1,6 @@
-#Train Scheduler#
+# Train Scheduler #
 
-(https://s15.postimg.cc/m68hrltob/train.gif)
+![alt text](https://s15.postimg.cc/m68hrltob/train.gif "Train")
 
 About
 
